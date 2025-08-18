@@ -74,7 +74,7 @@ source $OMARCHY_INSTALL/development/development.sh
 source $OMARCHY_INSTALL/development/nvim.sh
 source $OMARCHY_INSTALL/development/ruby.sh
 # source $OMARCHY_INSTALL/development/docker.sh
-source $OMARCHY_INSTALL/development/firewall.sh
+# source $OMARCHY_INSTALL/development/firewall.sh
 
 # Desktop
 show_logo slice 60
@@ -85,7 +85,7 @@ source $OMARCHY_INSTALL/desktop/theme.sh
 source $OMARCHY_INSTALL/desktop/bluetooth.sh
 source $OMARCHY_INSTALL/desktop/asdcontrol.sh
 source $OMARCHY_INSTALL/desktop/fonts.sh
-source $OMARCHY_INSTALL/desktop/printer.sh
+# source $OMARCHY_INSTALL/desktop/printer.sh
 
 # Apps
 show_logo expand
