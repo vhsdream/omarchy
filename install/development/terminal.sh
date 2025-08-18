@@ -5,4 +5,4 @@ yay -S --noconfirm --needed \
   fd eza fzf ripgrep zoxide bat dust jq xmlstarlet \
   wl-clipboard fastfetch btop \
   man tldr less whois plocate bash-completion \
-  kitty tmux sesh-bin starship yazi
+  kitty tmux sesh-bin starship yazi alacritty
