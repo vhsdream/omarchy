@@ -5,5 +5,6 @@ if ! command -v nvim &>/dev/null; then
 
   # Deploy personal config
   rm -rf ~/.config/nvim
+  mkdir -p ~/.config/nvim
   cp -R ~/.local/share/omarchy/config/nvim/* ~/.config/nvim/
 fi
