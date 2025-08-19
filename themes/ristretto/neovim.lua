@@ -1,6 +1,8 @@
 return {
 	{
 		"gthelding/monokai-pro.nvim",
+		lazy = false,
+		priority = 1000,
 		config = function()
 			require("monokai-pro").setup({
 				filter = "ristretto",
@@ -21,8 +23,5 @@ return {
 			})
 			vim.cmd([[colorscheme monokai-pro]])
 		end,
-	},
-	opts = {
-		colorscheme = "monokai-pro",
 	},
 }
