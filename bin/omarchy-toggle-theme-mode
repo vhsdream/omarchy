@@ -1,0 +1,33 @@
+#!/bin/bash
+
+MODE="$(darkman get)"
+THEMES_DIR="$HOME/.config/omarchy/themes/"
+CURRENT_THEME_LINK="$HOME/.config/omarchy/current/theme"
+
+THEMES=($(find "$THEMES_DIR" -mindepth 1 -maxdepth 1 | sort))
+
+# Get current theme from symlink
+if [[ -L "$CURRENT_THEME_LINK" ]]; then
+  CURRENT_THEME=$(realpath "$CURRENT_THEME_LINK")
+else
+  # Default to first theme if no symlink exists
+  CURRENT_THEME=$(realpath "${THEMES[0]}")
+fi
+
+# Do something here with darkman I guess?
+case "$MODE" in
+light)
+  gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
+  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
+  ;;
+dark)
+  gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+  ;;
+*)
+  exit 1
+  ;;
+esac
+
+echo "$CURRENT_THEME"
+notify-send "System theme changed to $NEW_MODE" -t 2000

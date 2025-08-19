@@ -6,6 +6,19 @@ set -e
 export PATH="$HOME/.local/share/omarchy/bin:$PATH"
 OMARCHY_INSTALL=~/.local/share/omarchy/install
 
+# Chroot installations have some differences
+if ! cmp -s /proc/1/root/ / 2>/dev/null; then
+  export OMARCHY_CHROOT_INSTALL=1
+fi
+
+chrootable_systemctl_enable() {
+  if [ -n "${OMARCHY_CHROOT_INSTALL:-}" ]; then
+    sudo systemctl enable $1
+  else
+    sudo systemctl enable --now $1
+  fi
+}
+
 # Give people a chance to retry running the installation
 catch_errors() {
   echo -e "\n\e[31mOmarchy installation failed!\e[0m"
@@ -27,10 +40,16 @@ show_subtext() {
   echo
 }
 
+# Update indexes if online
+if ping -c5 omarchy.org &>/dev/null; then
+  sudo pacman -Syy
+fi
+
 # Install prerequisites
+source $OMARCHY_INSTALL/preflight/gum.sh
 source $OMARCHY_INSTALL/preflight/guard.sh
 source $OMARCHY_INSTALL/preflight/aur.sh
-source $OMARCHY_INSTALL/preflight/presentation.sh
+source $OMARCHY_INSTALL/preflight/tte.sh
 source $OMARCHY_INSTALL/preflight/migrations.sh
 
 # Configuration
@@ -45,6 +64,7 @@ source $OMARCHY_INSTALL/config/power.sh
 source $OMARCHY_INSTALL/config/timezones.sh
 source $OMARCHY_INSTALL/config/login.sh
 source $OMARCHY_INSTALL/config/nvidia.sh
+source $OMARCHY_INSTALL/config/increase-sudo-tries.sh
 
 # Development
 show_logo decrypt 920
@@ -54,7 +74,7 @@ source $OMARCHY_INSTALL/development/development.sh
 source $OMARCHY_INSTALL/development/nvim.sh
 source $OMARCHY_INSTALL/development/ruby.sh
 # source $OMARCHY_INSTALL/development/docker.sh
-source $OMARCHY_INSTALL/development/firewall.sh
+# source $OMARCHY_INSTALL/development/firewall.sh
 
 # Desktop
 show_logo slice 60
@@ -63,9 +83,8 @@ source $OMARCHY_INSTALL/desktop/desktop.sh
 source $OMARCHY_INSTALL/desktop/hyprlandia.sh
 source $OMARCHY_INSTALL/desktop/theme.sh
 source $OMARCHY_INSTALL/desktop/bluetooth.sh
-source $OMARCHY_INSTALL/desktop/asdcontrol.sh
 source $OMARCHY_INSTALL/desktop/fonts.sh
-source $OMARCHY_INSTALL/desktop/printer.sh
+# source $OMARCHY_INSTALL/desktop/printer.sh
 
 # Apps
 show_logo expand
@@ -78,7 +97,11 @@ source $OMARCHY_INSTALL/apps/mimetypes.sh
 show_logo highlight
 show_subtext "Updating system packages [5/5]"
 sudo updatedb
-yay -Syu --noconfirm --ignore uwsm
+
+# Update system packages if we have a network connection
+if ping -c5 omarchy.org &>/dev/null; then
+  yay -Syu --noconfirm --ignore uwsm
+fi
 
 # Reboot
 show_logo laseretch 920

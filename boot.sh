@@ -24,6 +24,7 @@ rm -rf ~/.local/share/omarchy/
 git clone "https://github.com/${OMARCHY_REPO}.git" ~/.local/share/omarchy >/dev/null
 
 # Use custom branch if instructed
+OMARCHY_REF="personal"
 if [[ -n "$OMARCHY_REF" ]]; then
   echo -e "\eUsing branch: $OMARCHY_REF"
   cd ~/.local/share/omarchy
