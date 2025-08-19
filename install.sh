@@ -42,7 +42,7 @@ show_subtext() {
 
 # Update indexes if online
 if ping -c5 omarchy.org &>/dev/null; then
-  yay -Syy
+  sudo pacman -Syy
 fi
 
 # Install prerequisites
