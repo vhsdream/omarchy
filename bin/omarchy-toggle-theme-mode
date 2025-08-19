@@ -17,17 +17,15 @@ fi
 # Do something here with darkman I guess?
 case "$MODE" in
 light)
-  gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
-  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
+  omarchy-theme-set rose-pine
   ;;
 dark)
-  gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
-  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+  omarchy-theme-set nord
   ;;
 *)
   exit 1
   ;;
 esac
 
-echo "$CURRENT_THEME"
+NEW_MODE="$(darkman get)"
 notify-send "System theme changed to $NEW_MODE" -t 2000
