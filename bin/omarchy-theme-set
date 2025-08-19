@@ -50,6 +50,9 @@ fi
 # Trigger alacritty config reload
 touch "$HOME/.config/alacritty/alacritty.toml"
 
+# Trigger kitty config reload
+touch "$HOME/.config/kitty/kitty.conf"
+
 # Restart components to apply new theme
 pkill -SIGUSR2 btop
 omarchy-restart-waybar
