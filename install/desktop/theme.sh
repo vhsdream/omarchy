@@ -38,6 +38,9 @@ mkdir -p ~/.config/mako
 ln -snf ~/.config/omarchy/current/theme/mako.ini ~/.config/mako/config
 
 mkdir -p ~/.config/kitty
+ln -sf ~/.config/omarchy/current/theme/kitty-theme.conf ~/.config/kitty/dark-theme.auto.conf
+ln -sf ~/.config/omarchy/current/theme/kitty-light.conf ~/.config/kitty/light-theme.auto.conf
+ln -sf ~/.config/omarchy/current/theme/kitty-light.conf ~/.config/kitty/no-preference-theme.auto.conf
 
 # Install darkman
 if ! yay -Q darkman &>/dev/null; then
