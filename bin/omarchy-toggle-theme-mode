@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export PATH="$HOME/.local/share/omarchy/bin:$PATH"
 MODE="$(darkman get)"
 THEMES_DIR="$HOME/.config/omarchy/themes/"
 CURRENT_THEME_LINK="$HOME/.config/omarchy/current/theme"
@@ -17,14 +18,14 @@ fi
 # Do something here with darkman I guess?
 case "$MODE" in
 light)
-  # omarchy-theme-set rose-pine
-  gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
-  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
+  omarchy-theme-set rose-pine
+  # gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
+  # gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
   ;;
 dark)
-  # omarchy-theme-set nord
-  gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
-  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+  omarchy-theme-set nord
+  # gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+  # gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
   ;;
 *)
   exit 1
