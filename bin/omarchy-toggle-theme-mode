@@ -19,13 +19,13 @@ fi
 case "$MODE" in
 light)
   omarchy-theme-set rose-pine
-  # gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
-  # gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
+  gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
+  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
   ;;
 dark)
   omarchy-theme-set nord
-  # gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
-  # gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+  gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
   ;;
 *)
   exit 1
